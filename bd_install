@@ -1,0 +1,5 @@
+CREATE DATABASE  `suitup` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+CREATE USER 'suitup'@'localhost' IDENTIFIED BY 'suitup';
+
+GRANT ALL PRIVILEGES ON suitup.* TO  'suitup'@'localhost' WITH GRANT OPTION;
