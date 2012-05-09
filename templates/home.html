@@ -1,36 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+ 
+
+<html lang="en">
 
 <head>
 
-<title>Suit Up</title>
+	<meta charset="utf-8">
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<link rel="stylesheet" href="{{ STATIC_URL }}css/text.css" />
-
-<link rel="stylesheet" href="{{ STATIC_URL }}css/960.css" />
-
+	<title>Suit-UP!</title>
 	
+	<!-- SAYGON -->
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/text.css" />
 
-	<link href='http://fonts.googleapis.com/css?family=Squada+One' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
 
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.3.2.min.js"></script>
 
-    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
-
-    <!-- JQuery -->
-
-	<script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
-
-	<script type="text/javascript" src="scripts/tabs.js"></script>      
-
-    <script type="text/javascript" src="scripts/jquery-1.6.1.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.6.1.min.js"></script>
 
     <link rel="stylesheet" href="{{ STATIC_URL }}css/themes/base/jquery.ui.all.css">
 
@@ -256,7 +245,7 @@
 
 	<style>
 
-		body { font-size: 62.5%; }
+		body { font-size: 14px; }
 
 		label, input { display:block; }
 
@@ -275,13 +264,16 @@
 		.ui-dialog .ui-state-error { padding: .3em; }
 
 		.validateTips { border: 1px solid transparent; padding: 0.3em; }
+		.ui-button-text, .ui-dialog { font-size:12px; }
 
 	</style>
+	<!-- /SAYGON -->
 
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css">
 
 	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
 
+	
 	<script type="text/javascript">
 
 	$(document).ready(function(){
@@ -289,12 +281,22 @@
 
 
 	$(".dropbtn").click(function(){
-
-	  $("#dropdown").slideToggle("slow");
-
-	  $(this).toggleClass("active");
-
+	  if($(this).hasClass("active")){
+	  	  $("#leftside").animate({left: "-1024"});
+		  $("#main").show().animate({left: "100"}, function(){
+			$("#leftside").hide();
+			$(".dropbtn").toggleClass("active");
+		  });
+	  }
+	  else{
+		  $("#leftside").show().animate({left: "200"});
+		  $("#main").animate({left: "1124"}, function(){
+			$("#main").hide();
+			$(".dropbtn").toggleClass("active");
+		  });
+	  }
 	});
+	
 
 	
 
@@ -305,100 +307,18 @@
 	<script src="{{ STATIC_URL }}js/jquery.quicksand.js"></script>
 
 	<script src="{{ STATIC_URL }}js/script.js"></script>
-	
 
-	</head>
+</head>
 
 
 
 <body>
 
-
-
-<!-- AIDANA -->
-<div id="dropcontainer">
-
-<div id="dropdown">
-
-	
-
-	<div class="container">
-
-	
-
-		<img src="{{ STATIC_URL }}images/logo.png" alt="Atlas" class="logo">
-
-		
-
-		
-
-		
-
-		<ul>
-
-		<!--	<li class="dmenu1"><a href="#">Forrst</a></li> -->
-
-			
-
-			<li class="dmenu3"><a href="#">Twitter</a></li>
-
-		
-
-			<li class="dmenu2"><a href="#">Facebook</a></li>
-
-		</ul>
-
-		
-
-		<h4>Everything you need is here&#46;&#46;&#46;&#46;</h4>
-
-		
-
-		<img src="{{ STATIC_URL }}images/avatar.jpg" alt="Name here" class="dropavatar">
-
-		
-
-		<h2>Yo&#44; I&#39;m Johnny Doe&#46;</h2>
-
-		
-
-		<p class="dpara1 dparas">Iste natus error sit voluptatem accusantium doloremque laudantium&#44; totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.&#46;Nemo enim ipsam voluptatem quia voluptas sit&#46;</p>
-
-		<p class="dpara2 dparas">Neque porro quisquam est&#44; qui dolorem ipsum quia dolor sit amet&#44; consectetur, adipisci velit&#44; sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat&#46;</p>
-
-		<h5 class="dropquote">&#8220;Everything is designed&#46; Few things are designed well&#8230;&#8221;</h5>
-
-		
-
-		<div class="dropsep"></div>
-
-		
-
-		<h6>Wanna Get in Touch&#63;</h6>
-
-		<form>
-
-			<input type="text" placeholder="Your Name&#46;&#46;&#46;">
-
-			<input type="email" placeholder="Your Email&#46;&#46;&#46;">
-
-			<textarea placeholder="Your Message&#46;&#46;&#46;"></textarea>
-
-			<input type="submit" value="Submit &rarr;" class="dropsubmitbtn">
-
-		</form>
-
-	</div><!--container end-->
-
-</div>
-
-
-
 <a href="#" class="dropbtn "></a></div>
 
 
 
-<div class="container">
+<div class="container" id="leftside" style="left:-1024px; position:absolute;">
 
 
 
@@ -532,16 +452,15 @@
 
 			<h2>Atlas HTML Theme by <a href="http://purtypixels.com" title="PurtyPixels">Purty Pixels</a></h2>
 
-			<<h3>Send me a <a href="#" title="Twitter">tweet</a> or become a fan on <a href="#" title="Facebook">facebook</a></h3>
+			<h3>Send me a <a href="#" title="Twitter">tweet</a> or become a fan on <a href="#" title="Facebook">facebook</a></h3>
 
 		</footer>
 
 </div><!--container end-->
-<!-- AIDANA -->
 
 
-
-<div class="main">
+<!-- SAYGON -->
+<div class="main" id="main" style="position:absolute; left: 100px;">
 
 <div class="black"></div>
 
@@ -676,7 +595,6 @@
 
 
 </div>
-
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+@font-face {
     font-family: 'SantaFeLetPlainRegular';
     src: url('../webfonts/santafeletplain-webfont.eot');
     src: url('../webfonts/santafeletplain-webfont.eot?#iefix') format('embedded-opentype'),
@@ -31,7 +32,6 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
 }
@@ -77,7 +77,6 @@ body {
 .container {
 	width: 942px;
 	margin: 0 auto;
-	display: none;
 }
 
 
@@ -105,6 +104,7 @@ body {
 	background-image: url(../images/controls.png);
 	background-repeat: no-repeat;
 	background-position: -51px 0px;
+	float: right;
 	width: 51px;
 	height: 50px;
 }

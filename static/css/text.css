@@ -1,13 +1,10 @@
 @font-face {
     font-family: 'SquadaOneRegular';
-    src: url('font/squadaone-regular-webfont.eot');
-    src: url('font/squadaone-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('font/squadaone-regular-webfont.woff') format('woff'),
-         url('font/squadaone-regular-webfont.ttf') format('truetype'),
-         url('font/squadaone-regular-webfont.svg#SquadaOneRegular') format('svg');
+    font-size: 14px;
     font-weight: normal;
     font-style: normal;}
 .main{
+left: 0px;
 margin-left: auto;
 margin-right: auto;
 }
@@ -70,7 +67,7 @@ li.norm {
 width:130px;
 height:65px;
 float:right;
-font-size:21px;
+font-size:14px;
 color:#000;
 font-family: 'Oswald', sans-serif;
 }
@@ -90,7 +87,7 @@ font-family: 'Oswald', sans-serif;
 	 width:130px;
 			 height:45px;}
 .slogan{	 font-family: 'Oswald', sans-serif;
-	font-size:55px;
+	font-size:15px;
 	color:#c2c2c2;
 	text-transform:uppercase;
 	text-align:center;}
@@ -115,7 +112,7 @@ font-family: 'Oswald', sans-serif;
 	position:relative;
 	float:left;}
 .text1{
-	font-size:32px;
+	font-size:14px;
 	text-transform:uppercase;
 	color:#FFF;
 	font-family: 'Oswald', sans-serif;
