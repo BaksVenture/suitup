@@ -1,0 +1,62 @@
+
+
+table {
+	border-collapse:separate;
+	border-spacing:0;
+}
+caption, th, td {
+
+	font-weight:normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content:"";
+}
+blockquote, q {
+	quotes:"" "";
+}
+/* HTML5 tags */
+header, section, footer,
+aside, nav, article, figure {
+	display: block;
+}
+
+/*===================*/
+/*=== Main Styles ===*/
+/*===================*/
+
+
+
+
+
+.theme-default #slider {
+
+    width:951px; /* Make sure your images are the same size */
+    height:482px; /* Make sure your images are the same size */
+}
+.theme-pascal.slider-wrapper,
+.theme-orman.slider-wrapper {
+    margin-top:150px;
+}
+
+/*====================*/
+/*=== Other Styles ===*/
+/*====================*/
+.clear {
+	clear:both;
+}
+
+.magazine {
+margin:15px 0px 0px 8px; 
+border:medium; 
+border-style:double; 
+border-width:3px; 
+border-color:#FFFFFF;
+}
+
+.login a{
+font-size:16px;
+color:#990000;
+font-family: "Times New Roman", Times, serif;
+text-decoration:none;
+}

@@ -1,40 +1,445 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
+
+<title>Suit Up</title>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script type="text/javascript" src="/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/main_page.js"></script>
-<style>
-#main {
-	background:#333333;
-	border: solid 3 px red;
-	width: 100%;
-	height: 100%;
-}
-#yarlik {
-	position:absolute;
-	margin-left:30px;
-	margin-top:-170px;
-	background-color:#FF0000;
-	padding:50px;
-	cursor:pointer;
-}
-</style>
-<title>Suitup</title>
-</head>
+
+<link rel="stylesheet" href="{{ STATIC_URL }}css/text.css" />
+
+<link rel="stylesheet" href="{{ STATIC_URL }}css/960.css" />
+
+	
+
+	<link href='http://fonts.googleapis.com/css?family=Squada+One' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css" type="text/css" media="screen" />
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+
+    <!-- JQuery -->
+
+	<script type="text/javascript" src="scripts/jquery-1.3.2.min.js"></script>
+
+	<script type="text/javascript" src="scripts/tabs.js"></script>      
+
+    <script type="text/javascript" src="scripts/jquery-1.6.1.min.js"></script>
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/themes/base/jquery.ui.all.css">
+
+	<script src="{{ STATIC_URL }}js/jquery-1.7.1.js"></script>
+
+	<script src="{{ STATIC_URL }}js/external/jquery.bgiframe-2.1.2.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.ui.core.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.ui.widget.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.ui.mouse.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.ui.button.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.ui.draggable.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.ui.position.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.ui.resizable.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.ui.dialog.js"></script>
+
+	<script src="{{ STATIC_URL }}js/ui/jquery.effects.core.js"></script>
+
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/demos.css">
+
+	<!-- end -->
+
+	
+
+	<script>
+
+	$(function() {
+
+		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+		
+
+		var name = $( "#login" ),
+
+			password = $( "#password" ),
+
+			email = $( "#email" ),	
+
+			allFields = $( [] ).add( name ).add( email ).add( password ),
+
+			tips = $( ".validateTips" );
+
+
+
+		function updateTips( t ) {
+
+			tips
+
+				.text( t )
+
+				.addClass( "ui-state-highlight" );
+
+			setTimeout(function() {
+
+				tips.removeClass( "ui-state-highlight", 1500 );
+
+			}, 500 );
+
+		}
+
+
+
+		function checkRegexp( o, regexp, n ) {
+
+			if ( !( regexp.test( o.val() ) ) ) {
+
+				o.addClass( "ui-state-error" );
+
+				updateTips( n );
+
+				return false;
+
+			} else {
+
+				return true;
+
+			}
+
+		}
+
+		
+
+		$( "#dialog-form" ).dialog({
+
+			autoOpen: false,
+
+			height: 340,
+
+			width: 350,
+
+			modal: true,
+
+			buttons: {
+
+				"Вход": function() {
+
+					var bValid = true;
+
+					allFields.removeClass( "ui-state-error" );
+
+					bValid = bValid && checkRegexp( name, /^[a-z]([0-9a-z_])+$/i, "Username may consist of a-z, 0-9, underscores, begin with a letter." );
+
+					bValid = bValid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
+
+
+
+					if ( bValid ) {
+
+						<!-- action to do -->
+
+						$( this ).dialog( "close" );
+
+					}
+
+				},
+
+				Отмена: function() {
+
+					$( this ).dialog( "close" );
+
+				}
+
+			},
+
+			close: function() {
+
+				allFields.val( "" ).removeClass( "ui-state-error" );
+
+			}
+
+		});
+
+
+
+		$( "#register-form" ).dialog({
+
+			autoOpen: false,
+
+			height: 540,
+
+			width: 350,
+
+			modal: true,
+
+			buttons: {
+
+				"Зарегистрироваться": function() {
+
+					var bValid = true;
+
+					allFields.removeClass( "ui-state-error" );
+
+					bValid = bValid && checkRegexp( name, /^[a-z]([0-9a-z_])+$/i, "Username may consist of a-z, 0-9, underscores, begin with a letter." );
+
+					bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "eg. ui@jquery.com" );
+
+					bValid = bValid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
+
+
+
+					if ( bValid ) {
+
+						<!-- action to do -->
+
+						$( this ).dialog( "close" );
+
+					}
+
+				},
+
+				Отмена: function() {
+
+					$( this ).dialog( "close" );
+
+				}
+
+			},
+
+			close: function() {
+
+				allFields.val( "" ).removeClass( "ui-state-error" );
+
+			}
+
+		});
+
+
+
+		$( "#login-user" )
+
+			.button()
+
+			.click(function() {
+
+				$( "#dialog-form" ).dialog( "open" );
+
+			});
+
+		$( "#register-user" )
+
+			.button()
+
+			.click(function() {
+
+				$( "#register-form" ).dialog( "open" );
+
+			});
+
+	});
+
+	</script>
+
+	
+
+	<style>
+
+		body { font-size: 62.5%; }
+
+		label, input { display:block; }
+
+		input.text { margin-bottom:12px; width:95%; padding: .4em; }
+
+		fieldset { padding:0; border:0; margin-top:25px; }
+
+		h1 { font-size: 1.2em; margin: .6em 0; }
+
+		div#users-contain { width: 350px; margin: 20px 0; }
+
+		div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+
+		div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+
+		.ui-dialog .ui-state-error { padding: .3em; }
+
+		.validateTips { border: 1px solid transparent; padding: 0.3em; }
+
+	</style>
+
+	
+
+	</head>
+
+
 
 <body>
-<!--<div id="main">
-<div style="margin:auto; width:850px;">
-<img src="../static/img/1.jpg" name="home" alt="COMPUTER HARDWARE" style="" width="850" border="0" usemap="#Map" />
-<map name="Map" id="Map">
-  <area shape="rect" coords="242,51,326,111" alt="Monitor" href="#monitor" />
-	<area shape="poly" coords="399,241,374,217,383,195,443,198,473,221,456,247" alt="Printer" href="#printer" />
-	<area shape="poly" coords="146,15,167,10,189,10,206,15,208,135,181,132,147,138" alt="Case" href="#case" />
-	<area shape="poly" coords="360,35,410,27,460,49,459,66,433,77,402,80,360,54" alt="Scanner" href="#scanner" />
-	<area shape="poly" coords="53,156,78,162,111,151,83,195,125,217,74,207,49,187" alt="Keyboard" href="#keyboard" />
-</map>
+
+
+
+<div class="left">
+
+<img src="{{ STATIC_URL }}img/1.jpg" width="200px;" class="magazine" />
+
+<img src="{{ STATIC_URL }}img/2.jpg" width="200px;" class="magazine" />
+
+<img src="{{ STATIC_URL }}img/3.jpg" width="200px;" class="magazine" />
+
+<img src="{{ STATIC_URL }}img/4.jpg" width="200px;" class="magazine" />
+
+
+
 </div>
-</div>-->
+
+
+
+<div class="main">
+
+<div class="black"></div>
+
+
+
+<div class="center">
+
+<div class="white"></div>
+
+<div class="header"><div class="logo"><img src="{{ STATIC_URL }}img/02.png" alt="" /></div><div class="navigation">
+
+<div class="search">
+
+<input type="text" class="colortext" value="" />
+
+	<div class="login">
+
+		<button id="login-user">Вход</button>&nbsp;|
+
+		<button id="register-user">Регистрация</button>
+
+		
+
+		<div class="demo">
+
+			<div id="dialog-form" title="Войти в систему">
+
+				<p class="validateTips">Заполните все поля.</p>
+
+				<form>
+
+				<fieldset>
+
+					<label for="login">Логин:</label>
+
+					<input type="text" name="login" id="login" class="text ui-widget-content ui-corner-all" />
+
+					<label for="password">Пароль:</label>
+
+					<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+
+				</fieldset>
+
+				</form>
+
+				<center><img src="{{ STATIC_URL }}img/logo.png" width="270px;" /></center>
+
+			</div>
+
+			<div id="register-form" title="Регистрация">
+
+				<p class="validateTips">Заполните все поля.</p>
+
+				<form>
+
+				<fieldset>
+
+					<label for="login">Логин:</label>
+
+					<input type="text" name="login" id="login" class="text ui-widget-content ui-corner-all" />
+
+					<label for="name">Имя:</label>
+
+					<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+
+					<label for="surname">Фамилия:</label>
+
+					<input type="text" name="surname" id="surname" class="text ui-widget-content ui-corner-all" />
+
+					<label for="email">Email</label>
+
+					<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+
+					<label for="password">Пароль:</label>
+
+					<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+
+					<label for="repassword">Повторите пароль:</label>
+
+					<input type="password" name="repassword" id="repassword" value="" class="text ui-widget-content ui-corner-all" />
+
+				</fieldset>
+
+				</form>
+
+				<center><img src="{{ STATIC_URL }}img/logo.png" width="270px;" /></center>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="menu">
+
+	<ul class="n">
+
+		<li class="norm"><a href="">О нас</a></li>
+
+		<li class="norm"><a href="">Контакты</a></li>
+
+		<li class="norm"><a href="">Помощь</a></li>
+
+		<li class="norm"><a href="">Магазины</a></li>
+
+		<li class="norm"><a href="">Главная</a></li>
+
+	</ul>
+
+</div></div></div>
+
+<div class="line"><img src="{{ STATIC_URL }}img/01.png" alt="" /></div>
+
+<div class="photo">
+
+	<center><img src="{{ STATIC_URL }}img/06.png" alt="" /></center>
+
+</div>
+
+<div class="line"><img src="{{ STATIC_URL }}img/01.png" alt="" /></div>
+
+<div class="footer"><div class="news"><img src="{{ STATIC_URL }}img/23.png" alt=""  /></div><div class="inp"><input type="text" class="colortext1" value="" /></div><div class="sub"><img src="{{ STATIC_URL }}img/25.png" alt=""  /></div><div class="stay"><img src="{{ STATIC_URL }}img/26.png" alt=""  /></div><div class="smm"><img src="{{ STATIC_URL }}img/27.png" alt=""  /><img src="{{ STATIC_URL }}img/28.png" alt=""  /><img src="{{ STATIC_URL }}img/29.png" alt=""  /><img src="{{ STATIC_URL }}img/30.png" alt=""  /></div></div><div class="clear"></div></div>
+
+<div class="footblack"><div class="center"><img src="{{ STATIC_URL }}img/32.png" alt="" align="left"  />
+
+<div class="vlinks"><a href="http://www.webdesign.org">Web design</a> by <a title="Free Templates Online" href="http://www.freetemplatesonline.com">Free Templates</a> Online</div>
+
+<div class="v"><a target="_blank" href="">HOME</a> &nbsp;|&nbsp; <a target="_blank" href="">COMPANY</a> &nbsp;|&nbsp; <a target="_blank" href="">IT SUPPORT</a> &nbsp;|&nbsp; <a target="_blank" href="">PRODUCTS</a> &nbsp;|&nbsp; <a target="_blank" href="">CONTACT</a></div></div></div>
+
+
+
+</div>
+
 </body>
+
 </html>
