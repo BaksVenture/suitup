@@ -54,231 +54,131 @@
 	<script>
 
 	$(function() {
-
-		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
-
 		$( "#dialog:ui-dialog" ).dialog( "destroy" );
 
-		
-
 		var name = $( "#login" ),
-
-			password = $( "#password" ),
-
-			email = $( "#email" ),	
-
+            reg_name = $( "#username" ),
+            password = $( "#password" ),
+			reg_password = $( "#password2" ),
+            reg_password2 = $( "#repassword" ),
+			email = $( "#email" ),
 			allFields = $( [] ).add( name ).add( email ).add( password ),
-
 			tips = $( ".validateTips" );
 
-
-
 		function updateTips( t ) {
-
 			tips
-
 				.text( t )
-
 				.addClass( "ui-state-highlight" );
-
 			setTimeout(function() {
-
 				tips.removeClass( "ui-state-highlight", 1500 );
-
 			}, 500 );
-
 		}
-
-
 
 		function checkRegexp( o, regexp, n ) {
-
 			if ( !( regexp.test( o.val() ) ) ) {
-
 				o.addClass( "ui-state-error" );
-
 				updateTips( n );
-
 				return false;
-
 			} else {
-
 				return true;
-
 			}
-
 		}
 
-		
-
 		$( "#dialog-form" ).dialog({
-
 			autoOpen: false,
-
-			height: 340,
-
+			height: 300,
 			width: 350,
-
 			modal: true,
-
 			buttons: {
-
 				"Вход": function() {
-
 					var bValid = true;
-
 					allFields.removeClass( "ui-state-error" );
-
-					bValid = bValid && checkRegexp( name, /^[a-z]([0-9a-z_])+$/i, "Username may consist of a-z, 0-9, underscores, begin with a letter." );
-
+                    bValid = bValid && checkRegexp( name, /^[a-z]([0-9a-z_])+$/i, "Username may consist of a-z, 0-9, underscores, begin with a letter." );
 					bValid = bValid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
-
-
-
 					if ( bValid ) {
-
-						<!-- action to do -->
-
+						document.forms["login_form"].submit();
 						$( this ).dialog( "close" );
-
 					}
-
 				},
-
 				Отмена: function() {
-
 					$( this ).dialog( "close" );
-
 				}
-
 			},
-
 			close: function() {
-
 				allFields.val( "" ).removeClass( "ui-state-error" );
-
 			}
-
 		});
-
-
 
 		$( "#register-form" ).dialog({
-
 			autoOpen: false,
-
-			height: 540,
-
+			height: 400,
 			width: 350,
-
 			modal: true,
-
 			buttons: {
-
 				"Зарегистрироваться": function() {
-
 					var bValid = true;
-
+                    reg_password = $( "#password2" ),
+                    reg_password2 = $( "#repassword" ),
 					allFields.removeClass( "ui-state-error" );
-
-					bValid = bValid && checkRegexp( name, /^[a-z]([0-9a-z_])+$/i, "Username may consist of a-z, 0-9, underscores, begin with a letter." );
-
+                    bValid = bValid && checkRegexp( reg_name, /^[a-z]([0-9a-z_])+$/i, "Username may consist of a-z, 0-9, underscores, begin with a letter." );
 					bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "eg. ui@jquery.com" );
-
-					bValid = bValid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
-
-
-
+					bValid = bValid && checkRegexp( reg_password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
+                    bValid = bValid && checkRegexp( reg_password2, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
+                    if(bValid)
+                    if(!(reg_password.val() == reg_password2.val())){
+                        updateTips( "Passwords are not equal" );
+                        bValid = false;
+                    }
 					if ( bValid ) {
-
-						<!-- action to do -->
-
+						document.forms["register_form"].submit();
 						$( this ).dialog( "close" );
-
 					}
-
 				},
-
 				Отмена: function() {
-
 					$( this ).dialog( "close" );
-
 				}
-
 			},
-
 			close: function() {
-
 				allFields.val( "" ).removeClass( "ui-state-error" );
-
 			}
-
 		});
 
-
-
 		$( "#login-user" )
-
 			.button()
-
 			.click(function() {
-
 				$( "#dialog-form" ).dialog( "open" );
-
 			});
-
 		$( "#register-user" )
-
 			.button()
-
 			.click(function() {
-
 				$( "#register-form" ).dialog( "open" );
-
 			});
-
 	});
 
 	</script>
 
-	
-
 	<style>
 
 		body { font-size: 14px; }
-
 		label, input { display:block; }
-
 		input.text { margin-bottom:12px; width:95%; padding: .4em; }
-
 		fieldset { padding:0; border:0; margin-top:25px; }
-
 		h1 { font-size: 1.2em; margin: .6em 0; }
-
 		div#users-contain { width: 350px; margin: 20px 0; }
-
 		div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-
 		div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-
 		.ui-dialog .ui-state-error { padding: .3em; }
-
 		.validateTips { border: 1px solid transparent; padding: 0.3em; }
 		.ui-button-text, .ui-dialog { font-size:12px; }
-
 	</style>
 	<!-- /SAYGON -->
 
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css">
-
 	<link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-
 	
 	<script type="text/javascript">
 
 	$(document).ready(function(){
-
-
 
 	$(".dropbtn").click(function(){
 	  if($(this).hasClass("active")){
@@ -296,20 +196,15 @@
 		  });
 	  }
 	});
-	
-
-	
 
 });
 
 	</script>
 
 	<script src="{{ STATIC_URL }}js/jquery.quicksand.js"></script>
-
 	<script src="{{ STATIC_URL }}js/script.js"></script>
 
 </head>
-
 
 
 <body>
@@ -317,18 +212,11 @@
 <a href="#" class="dropbtn "></a></div>
 
 
-
 <div class="container" id="leftside" style="left:-1024px; position:absolute;">
-
-
 
 	<img src="{{ STATIC_URL }}images/logo.png" alt="Suit-UP" class="logo">
 
-	
-
-	<h1 class="subtitle">Everything you need to know about clothes &#46;</h1>
-
-	
+	<h1 class="subtitle">Everything you need to know about clothes &#46;</h1>	
 
 	<nav id="filter">		</nav>
 
@@ -465,95 +353,51 @@
 <div class="black"></div>
 
 
-
 <div class="center">
-
 <div class="white"></div>
-
 <div class="header"><div class="logo"><img src="{{ STATIC_URL }}img/02.png" alt="" /></div><div class="navigation">
-
 <div class="search">
 
 <input type="text" class="colortext" value="" />
 
 	<div class="login">
-
 		<button id="login-user">Вход</button>&nbsp;|
-
 		<button id="register-user">Регистрация</button>
-
-		
 
 		<div class="demo">
 
 			<div id="dialog-form" title="Войти в систему">
-
 				<p class="validateTips">Заполните все поля.</p>
-
-				<form>
-
+				<form action="{% url login %}" method="post" id="login_form">{% csrf_token %}
 				<fieldset>
-
 					<label for="login">Логин:</label>
-
 					<input type="text" name="login" id="login" class="text ui-widget-content ui-corner-all" />
-
 					<label for="password">Пароль:</label>
-
 					<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
-
 				</fieldset>
-
 				</form>
-
 				<center><img src="{{ STATIC_URL }}img/logo.png" width="270px;" /></center>
-
 			</div>
 
 			<div id="register-form" title="Регистрация">
-
 				<p class="validateTips">Заполните все поля.</p>
-
-				<form>
-
+				<form action="{% url register %}" method="post" id="register_form">{% csrf_token %}
 				<fieldset>
-
-					<label for="login">Логин:</label>
-
-					<input type="text" name="login" id="login" class="text ui-widget-content ui-corner-all" />
-
-					<label for="name">Имя:</label>
-
-					<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
-
-					<label for="surname">Фамилия:</label>
-
-					<input type="text" name="surname" id="surname" class="text ui-widget-content ui-corner-all" />
-
+					<label for="username">Логин:</label>
+					<input type="text" name="username" id="username" class="text ui-widget-content ui-corner-all" />
 					<label for="email">Email</label>
-
 					<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
-
 					<label for="password">Пароль:</label>
-
-					<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
-
+					<input type="password" name="password" id="password2" value="" class="text ui-widget-content ui-corner-all" />
 					<label for="repassword">Повторите пароль:</label>
-
 					<input type="password" name="repassword" id="repassword" value="" class="text ui-widget-content ui-corner-all" />
-
 				</fieldset>
-
 				</form>
 
 				<center><img src="{{ STATIC_URL }}img/logo.png" width="270px;" /></center>
-
 			</div>
-
 		</div>
-
 	</div>
-
 </div>
 
 <div class="menu">
