@@ -156,10 +156,10 @@ INSTALLED_APPS = (
 )
 
 DAJAXICE_FUNCTIONS = (
-        'registration.ajax.randomize',
+        'registration.ajax.dajaxice_example',
          )
 DAJAX_FUNCTIONS = (
-        'registration.ajax.randomize',
+        'registration.ajax.dajaxice_example',
          )
 
 # A sample logging configuration. The only tangible logging
