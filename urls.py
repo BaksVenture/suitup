@@ -6,6 +6,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+from dajaxice.core import dajaxice_autodiscover
+dajaxice_autodiscover()
 
 urlpatterns = patterns('',
     url(r'^', include('clothes.urls')),
@@ -19,6 +21,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    (r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')),
 )
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

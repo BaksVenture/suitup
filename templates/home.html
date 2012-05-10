@@ -1,7 +1,5 @@
+{% load dajaxice_templatetags %}
 <!DOCTYPE html>
-
- 
-
 <html lang="en">
 
 <head>
@@ -28,7 +26,11 @@
 	<script src="{{ STATIC_URL }}js/ui/jquery.ui.resizable.js"></script>
 	<script src="{{ STATIC_URL }}js/ui/jquery.ui.dialog.js"></script>
 	<script src="{{ STATIC_URL }}js/ui/jquery.effects.core.js"></script>
+	
 	<script src="{{ STATIC_URL }}js/ajax.login.js"></script>
+    <script src="{{ STATIC_URL }}dajax/jquery.dajax.core.js" type="text/javascript" charset="utf-8"></script>
+    {% dajaxice_js_import %}
+
 
 	<style>
 
@@ -114,7 +116,6 @@
 
 <div class="black"></div>
 
-
 <div class="center">
 <div class="white"></div>
 <div class="header"><div class="logo"><img src="{{ STATIC_URL }}img/02.png" alt="" /></div><div class="navigation">
@@ -134,8 +135,7 @@
 	    {% endif %}
 		<button id="login-user">Вход</button>&nbsp;|
 		<button id="register-user">Регистрация</button>
-
-		<div class="demo">
+        <div class="demo">
 
 			<div id="dialog-form" title="Войти в систему">
 				<p class="validateTips">Заполните все поля.</p>
