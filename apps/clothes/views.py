@@ -7,6 +7,7 @@ def index(request):
     brands = Brand.objects.all();
     variables = RequestContext(request, {
         'brands': brands,
+        'user': request.user
     })
     return render_to_response('home.html', variables)
     
