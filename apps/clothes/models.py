@@ -5,6 +5,11 @@ from clothes import settings as ns
 from suituptools.string import slugify
 from django.contrib.auth.models import User
 
+GENDER_CHOICES = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+)
+
 def slugify_filename(filename):
     t = filename.split('.')
     name = slugify("".join(t[:-1]))
@@ -18,6 +23,16 @@ class ClothesCategory(models.Model):
     class Meta:
         verbose_name = 'Тип одежды'
         verbose_name_plural = 'Типы одежды'
+
+    def __unicode__(self):
+        return self.name
+        
+class ClientCategory(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    
+    class Meta:
+        verbose_name = 'Категория клиента'
+        verbose_name_plural = 'Категории клиента'
 
     def __unicode__(self):
         return self.name
@@ -41,6 +56,8 @@ class Brand(models.Model):
     logo = models.ImageField(upload_to = logo_image_folder, \
             default = ns.DEFAULT_BRANDLOGO_PATH)
             
+    client_categories = models.ManyToManyField(ClientCategory)
+
     background = models.ImageField(upload_to = background_image_folder, \
             default = ns.DEFAULT_BRANDBACK_PATH)
             

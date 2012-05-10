@@ -225,107 +225,14 @@
 		<div class="portfoliocontainer">
 
 		<ul id="stage">
-
-			<li data-tags="Man">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">ZARA</h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work1.png" alt="" /></a>			</li>
-
-			<li data-tags="Man, Woman, Children">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">TopShop</h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work2.png" alt="" /></a>			</li>
-
-			<li data-tags="Man, Children">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">GAP</h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work3.png" alt="" /></a>			</li>
-
-			<li data-tags="Man,Woman">
-
-				<a href="#"><span class="portfoliohover"><h1 class="porthover1">Cool Rollover Titles</h1><h1 class="porthover2">As well as some nifty sub-titles</h1></span><img src="{{ STATIC_URL }}images/portfolio/work4.png" alt="" /></a>			</li>
-
-			<li data-tags="Woman,Accessories">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">Celio</h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work5.png" alt="" /></a>			</li>
-
-			<li data-tags="Man,Accessories">
-
-				<a href="#"><span class="portfoliohover"><h1 class="porthover1">Cool Rollover Titles</h1><h1 class="porthover2">As well as some nifty sub-titles</h1></span><img src="{{ STATIC_URL }}images/portfolio/work6.png" alt="" /></a>			</li>
-
-			<li data-tags="Man,Woman">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">LC WAIKIKI </h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work7.png" alt="" /></a>			</li>
-
-			<li data-tags="Woman">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">Benetton</h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work8.png" alt="" /></a>			</li>
-
-			<li data-tags="Woman">
-
-				<a href="#"><span class="portfoliohover"><h1 class="porthover1">Cool Rollover Titles</h1><h1 class="porthover2">As well as some nifty sub-titles</h1></span><img src="{{ STATIC_URL }}images/portfolio/work9.png" alt="" /></a>			</li>
-
-			<li data-tags="Woman">
-
-				<a href="#"><span class="portfoliohover"><h1 class="porthover1">Cool Rollover Titles</h1><h1 class="porthover2">As well as some nifty sub-titles</h1></span><img src="{{ STATIC_URL }}images/portfolio/work10.png" alt="" /></a>			</li>
-
-			<li data-tags="Man,Accessories">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">H&amp;M</h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work11.png" alt="" /></a>			</li>
-
-			<li data-tags="Accessories,Woman">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">&nbsp;</h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work12.png" alt="" /></a>			</li>
-
-			<li data-tags="Accessories">
-
-				<a href="#"><span class="portfoliohover"><h1 class="porthover1">Cool Rollover Titles</h1><h1 class="porthover2">As well as some nifty sub-titles</h1></span><img src="{{ STATIC_URL }}images/portfolio/work13.png" alt="" /></a>			</li>
-
-			<li data-tags="Woman">
-
-				<a href="#"><span class="portfoliohover"><h1 class="porthover1">Cool Rollover Titles</h1><h1 class="porthover2">As well as some nifty sub-titles</h1></span><img src="{{ STATIC_URL }}images/portfolio/work14.png" alt="" /></a>			</li>
-
-			<li data-tags="Man">
-
-				<a href="#"><span class="portfoliohover">
-
-				<h1 class="porthover1">Tommy Hilfiger </h1>
-
-				</span><img src="{{ STATIC_URL }}images/portfolio/work15.png" alt="" /></a>			</li>
-
-			<li data-tags="Children,Man">
-
-				<a href="#"><span class="portfoliohover"><h1 class="porthover1">Cool Rollover Titles</h1><h1 class="porthover2">As well as some nifty sub-titles</h1></span><img src="{{ STATIC_URL }}images/portfolio/work16.png" alt="" /></a>			</li>
-
+		    {% for brand in brands %}
+		        <li data-tags="{% for cl_cat in brand.client_categories.all %}{{ cl_cat }},{% endfor %}">
+				  <a href="/brand/{{ brand.id }}"><span class="portfoliohover">
+				  <h1 class="porthover1">{{ brand.name }}</h1>
+				  </span><img src="{{ MEDIA_URL }}{{ brand.logo }}" alt="" /></a>			
+				</li>
+		    {% endfor %}
+			
 		</ul>
 
 		</div>
