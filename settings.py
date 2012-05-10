@@ -94,7 +94,8 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'dajaxice.finder.DajaxiceFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -104,7 +105,17 @@ SECRET_KEY = '4v@0&wc$w81i#@2g%vqeh^ya_(mo!j-0+yjrp_ns9!4s_x%1j8'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.contrib.messages.context_processors.messages',
+    "django.core.context_processors.request",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -114,6 +125,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
 )
+
+DAJAXICE_MEDIA_PREFIX="dajaxice"
 
 ROOT_URLCONF = 'suitup.urls'
 
@@ -134,11 +147,20 @@ INSTALLED_APPS = (
     'clothes',
     'suituptools',
     'registration',
+    'dajaxice', 
+    'dajax',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+DAJAXICE_FUNCTIONS = (
+        'registration.ajax.randomize',
+         )
+DAJAX_FUNCTIONS = (
+        'registration.ajax.randomize',
+         )
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
