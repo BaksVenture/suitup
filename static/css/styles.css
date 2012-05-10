@@ -99,6 +99,7 @@ body {
 	height: 50px;
 	float: left;
 	margin-top: -1px;
+	position: fixed;
 }
 .dropbtn.active {
 	background-image: url(../images/controls.png);
