@@ -9,6 +9,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^', include('clothes.urls')),
+    url(r'^accounts/', include('registration.urls')),
     # Examples:
     # url(r'^$', 'suitup.views.home', name='home'),
     # url(r'^suitup/', include('suitup.foo.urls')),
