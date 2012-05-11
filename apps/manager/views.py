@@ -47,7 +47,7 @@ def add(request):
             for suber in subers:
                 send_mail(
                     'New item!', 
-                    'new item hule' , 
+                    'new item in '+brand.name , 
                     'sdubaks@gmail.com', 
                     [suber.user.email]
                 )
