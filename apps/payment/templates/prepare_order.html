@@ -1,18 +1,14 @@
-  Оформление заказа: <br />
-  {{ product.dress_id }} - {{ product.price }} KZT<br />
   <form method="post" action="/buy/">{% csrf_token %}
-    <table>
+	<div id="popup-msg">
+	    {{ product.brand.name }} - {{ product.price }} KZT<br />
+	</div> 
+	<div id="test-cert-form">  
     {% for field in form %}
-        <tr>
-        <td>{{ field.label }}:</td>
-        <td>{% if field.field.required %}*{% endif %}</td>
-        <td>{{ field }}</td>
-        <td>{{ field.errors }}</td>
-        </tr>
+        <label>{{ field.label }} {% if field.field.required %}*{% endif %}</label>
+        {{ field }}
+        {{ field.errors }}
     {% endfor %}
-    </table>
-    <input type="hidden" value="{{ product.id }}" name="product_id" />
+    </div> 
+	<input type="hidden" value="{{ product.id }}" name="product_id" />
     <input type="submit" value="Подтвердить" />
   </form>
-  
-  <font color = "red">! Запомните номер заказа в след.окне. С помощью него вы сможете проверить статус заказа</font>

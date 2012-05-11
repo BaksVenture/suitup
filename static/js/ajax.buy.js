@@ -38,12 +38,27 @@ $(document).ajaxSend(function(event, xhr, settings) {
 
 /* CSRF token */
 
+$(document).ready(function() {    
+    $("#dark-background").click(hide_test_cert_popup);
+    $("#popup .close").click(hide_test_cert_popup);
+});
+
 function buy(item_id){
     $.post("/buy/order", {
         product_id: item_id
     },
     function(data){
-        $("body").html(data);
+        $("#payment_form").html(data);
+        $width = (window.innerWidth-$("#popup").width())/2;
+        $height = (window.innerHeight-$("#popup").height())/2;
+        $("#popup").css({"top": $height, "left": $width}); 
+        $("#popup").fadeIn(70);
+        $("#dark-background").fadeIn(70);
     });
+}
+
+function hide_test_cert_popup(){
+    $("#popup").fadeOut(70);
+    $("#dark-background").fadeOut(70);
 }
 
