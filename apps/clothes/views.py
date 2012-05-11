@@ -2,13 +2,22 @@ from django.template import RequestContext
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, render, get_object_or_404
 from models import Brand, Clothes, ClothesCategory
+from registration.models import User as User2
 
 def index(request):
     brands = Brand.objects.all();
-    variables = RequestContext(request, {
-        'brands': brands,
-        'user': request.user
-    })
+    try:
+        variables = RequestContext(request, {
+            'brands': brands,
+            'user': request.user,
+            'user2': User2.objects.get(pk=request.user.id)
+        })
+    except User2.DoesNotExist:
+        variables = RequestContext(request, {
+            'brands': brands,
+            'user': request.user,
+        })
+        
     return render_to_response('home.html', variables)
     
 def brand_page(request, brand_id):

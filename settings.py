@@ -23,6 +23,15 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+#EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+#EMAIL_FILE_PATH = '/home/kirill/email' # change this to a proper location
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sdubaks@gmail.com'
+EMAIL_HOST_PASSWORD = 'sdubaks12345'
+EMAIL_PORT = 25
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -152,6 +161,7 @@ INSTALLED_APPS = (
     'payment',
     'kkb',
     'manager',
+    'mailer',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

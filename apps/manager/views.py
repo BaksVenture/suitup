@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from clothes.models import Brand, Clothes
 from django.db.models import Q
 from forms import ClothesForm, BrandForm
+from registration.models import User as User2
+
+from mailer import send_mail
 
 def index(request):
     if request.user.is_authenticated() and request.user.is_staff:
@@ -39,6 +42,15 @@ def add(request):
         form = ClothesForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
+            brand = Brand.objects.get(manager=request.user)
+            subers = User2.objects.filter(subscriptions__id=brand.id)
+            for suber in subers:
+                send_mail(
+                    'New item!', 
+                    'new item hule' , 
+                    'sdubaks@gmail.com', 
+                    [suber.user.email]
+                )
             return HttpResponseRedirect("/manager/clothes/")
     else:
         form = ClothesForm()

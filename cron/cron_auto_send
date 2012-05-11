@@ -1,0 +1,3 @@
+* * * * * (/home/kirill/astven/projects/suitup/cron/send_mail.sh)
+0,20,40 * * * * (/home/kirill/astven/projects/suitup/cron/retry_deferred.sh)
+0 0 * * * (/home/kirill/astven/projects/suitup/cron/clear_logs.sh)
