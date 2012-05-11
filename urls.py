@@ -12,6 +12,7 @@ dajaxice_autodiscover()
 urlpatterns = patterns('',
     url(r'^', include('clothes.urls')),
     url(r'^accounts/', include('registration.urls')),
+    url(r'^manager/', include('manager.urls')),
     # Examples:
     # url(r'^$', 'suitup.views.home', name='home'),
     # url(r'^suitup/', include('suitup.foo.urls')),
