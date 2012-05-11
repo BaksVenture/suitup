@@ -2,9 +2,6 @@
 from django import forms
 
 class OrderForm(forms.Form):
-    full_name = forms.CharField(
-        label = 'Фамилия Имя Отчество'
-    )
     address = forms.CharField(
         label='Адрес',
     )

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Order(models.Model):
     products = models.ManyToManyField(Clothes)
-    buyer = models.CharField(max_length=200)
+    buyer = models.ForeignKey(User)
     address = models.TextField()
     phone = models.CharField(max_length=30)
     email = models.EmailField()

@@ -1,7 +1,7 @@
 from django.template import RequestContext
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response, render, get_object_or_404
-from models import Brand, Clothes
+from models import Brand, Clothes, ClothesCategory
 
 def index(request):
     brands = Brand.objects.all();
@@ -18,6 +18,11 @@ def brand_catalog(request, brand_id):
     brand = get_object_or_404(Brand, pk = brand_id)
     clothes = Clothes.objects.filter(brand = brand)
     return render(request, "clothes/catalog.html", {'clothes': clothes, 'brand':brand})
+    
+def clothes_catalog(request, dress_type_id):
+    dress_type = get_object_or_404(ClothesCategory, pk = dress_type_id)
+    clothes = Clothes.objects.filter(dress_category=dress_type)
+    return render(request, "clothes/catalog2.html", {'clothes': clothes, 'dress_type':dress_type})
 
 def about(request):
     return render(request, "home.html", {'about': True})

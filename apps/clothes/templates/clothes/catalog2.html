@@ -14,20 +14,18 @@
 
 <body>
 
-<a href="/" class="dropbtn "></a>
+<a href="/" class="dropbtn " style="margin-top:-10px;"></a>
 
 <div class="container">
-
-	<img src="{{ MEDIA_URL }}{{ brand.logo }}" alt="Suit-UP" class="logo" height="86px;">
 	
-	<h1 class="subtitle">{{ brand.description }}</h1>
+	<h1 class="subtitle">{{ dress_type.name }}</h1>
 	
 	<nav id="filter">		</nav>
 		<div class="portfolioseperator"></div>
 		<div class="portfoliocontainer">
 		<ul id="stage">
             {% for item in clothes %}            
-			<li data-tags="{{ item.dress_category }}">
+			<li data-tags="{{ item.client_category }}">
 				<a href="#"><span class="portfoliohover">
 				<h1 class="porthover1">{{ item.brand.name }}, ${{ item.price }}, sale - {{ item.sale_percent }}%</h1>
 				<input type="button" onclick="javascript:buy({{ item.id }});" name="Buy" value="Buy" class="button buy">

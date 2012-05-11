@@ -1,6 +1,6 @@
   Оформление заказа: <br />
   {{ product.dress_id }} - {{ product.price }} KZT<br />
-  <form method="post" action="/payment/">{% csrf_token %}
+  <form method="post" action="/buy/">{% csrf_token %}
     <table>
     {% for field in form %}
         <tr>

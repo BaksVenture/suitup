@@ -39,10 +39,11 @@ $(document).ajaxSend(function(event, xhr, settings) {
 /* CSRF token */
 
 function buy(item_id){
-    $.post("/buy/", {
+    $.post("/buy/order", {
         product_id: item_id
     },
     function(data){
+        $("body").html(data);
     });
 }
 

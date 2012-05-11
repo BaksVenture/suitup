@@ -35,10 +35,10 @@ def prepare_payment(request):
         if form.is_valid():
             product = Clothes.objects.get(id=request.POST['product_id'])
             order = Order(
-                buyer = form.cleaned_data['full_name'],
+                buyer_id = request.user.id,
                 address = form.cleaned_data['address'],
                 phone = form.cleaned_data['phone'],
-                email = form.cleaned_data['email'],
+                email = request.user.email,
                 amount = product.price,
                 create_date = datetime.now(),
                 payment_system = '11'

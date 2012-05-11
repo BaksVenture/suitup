@@ -5,11 +5,6 @@ from clothes import settings as ns
 from suituptools.string import slugify
 from django.contrib.auth.models import User
 
-GENDER_CHOICES = (
-    ('M', 'Male'),
-    ('F', 'Female'),
-)
-
 def slugify_filename(filename):
     t = filename.split('.')
     name = slugify("".join(t[:-1]))
@@ -88,6 +83,7 @@ class Clothes(models.Model):
     sale_percent = models.IntegerField()
     brand = models.ForeignKey(Brand)
     dress_category = models.ForeignKey(ClothesCategory)
+    client_category = models.ForeignKey(ClientCategory)
     
     class Meta:
         verbose_name = 'Вещь'

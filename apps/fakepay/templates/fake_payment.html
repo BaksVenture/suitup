@@ -1,8 +1,0 @@
-<div>Вы выбрали сертификаты на сумму {{ AMOUNT }} KZT</div>
-<form name="SendOrder" method="post" action="/fake/pay/">
-   <label>E-mail:</label> <input type="text" name="email" size=50 maxlength=50  value="kkirill7@gmail.com">
-   <input type="hidden" name="order_id" value="{{ ORDER_ID }}">
-   <input type="hidden" name="amount" value="{{ AMOUNT }}">
-   <label>Со счетом согласен (-а)</label>
-   <input type="submit" name="GotoPay"  value="Да, перейти к оплате" id="goto_pay">
-</form>

@@ -149,9 +149,8 @@ INSTALLED_APPS = (
     'registration',
     'dajaxice', 
     'dajax',
-    #'payment',
-    #'kkb',
-    #'fakepay',
+    'payment',
+    'kkb',
     'manager',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
