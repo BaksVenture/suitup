@@ -1,0 +1,15 @@
+<script language="JavaScript">
+setTimeout('document.SendOrder.submit()',1);
+</script>
+<div style="display:none;">
+<form name="SendOrder" method="post" action="https://3dsecure.kkb.kz/jsp/process/logon.jsp">
+   <input type="hidden" name="Signed_Order_B64" value="{{ Signed_Order_B64|safe|escape }}">
+   <input type="hidden" name="email" value="{{ email }}">
+   <input type="hidden" name="phone" value="{{ phone }}">
+   <input type="hidden" name="Language" value="rus"> <!-- язык формы оплаты rus/eng -->
+   <input type="hidden" name="BackLink" value="{{ back_link }}">
+   <input type="hidden" name="PostLink" value="{{ post_link }}">
+   <label>Со счетом согласен (-а)</label>
+   <input type="submit" name="GotoPay"  value="Да, перейти к оплате" id="goto_pay">
+</form>
+</div>

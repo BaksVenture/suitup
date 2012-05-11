@@ -9,6 +9,7 @@
 	
 	<script src="{{ STATIC_URL }}js/jquery.quicksand.js"></script>
 	<script src="{{ STATIC_URL }}js/script.js"></script>
+	<script src="{{ STATIC_URL }}js/ajax.buy.js"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
 			<li data-tags="{{ item.dress_category }}">
 				<a href="#"><span class="portfoliohover">
 				<h1 class="porthover1">{{ item.brand.name }}, ${{ item.price }}</h1>
-				<input type="submit" name="Buy" value="Buy" class="button buy">
+				<input type="button" onclick="javascript:buy({{ item.id }});" name="Buy" value="Buy" class="button buy">
 				</span><img src="{{ MEDIA_URL }}{{ item.dress_img }}" alt="" /></a>			</li>
             {% endfor %}
 		</ul>

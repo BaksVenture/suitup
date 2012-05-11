@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import Template, RequestContext, Context
 from django.contrib.auth.models import User
+from registration.models import User as User2
 
 def login(request):
     username = request.POST['login']
@@ -61,6 +62,8 @@ def ajax_register(request):
                 user = User.objects.create_user(username=username,email=email,password=password)
 
         user.save()
+        user2 = User2.objects.create(user=user)
+        user2.save()
         user = auth.authenticate(username=username, password=password)
         if user is not None and user.is_active:
             auth.login(request, user)

@@ -1,0 +1,18 @@
+  Оформление заказа: <br />
+  {{ product.dress_id }} - {{ product.price }} KZT<br />
+  <form method="post" action="/payment/">{% csrf_token %}
+    <table>
+    {% for field in form %}
+        <tr>
+        <td>{{ field.label }}:</td>
+        <td>{% if field.field.required %}*{% endif %}</td>
+        <td>{{ field }}</td>
+        <td>{{ field.errors }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <input type="hidden" value="{{ product.id }}" name="product_id" />
+    <input type="submit" value="Подтвердить" />
+  </form>
+  
+  <font color = "red">! Запомните номер заказа в след.окне. С помощью него вы сможете проверить статус заказа</font>
