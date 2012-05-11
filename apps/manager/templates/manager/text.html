@@ -240,7 +240,7 @@ $(document).pngFix( );
 		
 		<div class="nav-divider">&nbsp;</div>
 		
-		<ul class="select"><li><a href="#nogo"><b>Settings</b><!--[if IE 7]><!--></a><!--<![endif]-->
+		<ul class="select"><li><a href="{% url manager_settings %}"><b>Settings</b><!--[if IE 7]><!--></a><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
 		</li>
@@ -289,24 +289,15 @@ $(document).pngFix( );
             {% for item in brand %}
 			<h3>Brand name</h3>
 			<h2>{{ item.name }}</h2>
-			<a href="">Edit</a>
-			<br />
-			<br />
 			<h3>Brand logo</h3>
 			<img src="{{ STATIC_URL }}{{ item.logo }}" /><br />
-			<a href="">Edit</a>
-			<br />
 			<br  />
 			<h3>Description</h3>
 			<p>{{ item.description }}</p>
-			<a href="">Edit</a> 
-			<br  />
 			<br  />
 			<h3>Background</h3>
 			<img src="{{ STATIC_URL }}{{ item.background }}" />
-			<br />
-			<a href="">Edit</a>
-            <br /><br /><hr /><br />
+			<br /><br /><hr /><br />
             {% endfor %}
 			</div>
 			<!--  end table-content  -->

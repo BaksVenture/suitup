@@ -6,7 +6,7 @@ from django.template import Template, RequestContext, Context
 from django.contrib.auth.models import User
 from clothes.models import Brand, Clothes
 from django.db.models import Q
-from forms import ClothesForm
+from forms import ClothesForm, BrandForm
 
 def index(request):
     if request.user.is_authenticated() and request.user.is_staff:
@@ -60,5 +60,14 @@ def delete(request, id):
     item.delete()
     return HttpResponseRedirect("/manager/clothes/")
 
-
+def settings(request):
+    brand = Brand.objects.filter(manager=request.user)[0:1].get()
+    if request.method == "POST":
+        form = BrandForm(request.POST, request.FILES, instance = brand)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect("/manager/")
+    else:
+        form = BrandForm(instance = brand)
+    return render(request, "manager/settings.html", {'form':form})
 
