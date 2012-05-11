@@ -66,6 +66,23 @@
 		  });
 	    }
 	  });
+        
+      $("#magazines").click(function(){
+	    if($(this).hasClass("active")){
+	  	  $("#leftside").animate({left: "-1024"});
+		  $("#main").show().animate({left: "100"}, function(){
+			$("#leftside").hide();
+			$(".dropbtn").toggleClass("active");
+		  });
+	    }
+	    else{
+		  $("#leftside").show().animate({left: "200"});
+		  $("#main").animate({left: "1124"}, function(){
+			$("#main").hide();
+			$(".dropbtn").toggleClass("active");
+		  });
+	    }
+	  });
     });
 
 	</script>
@@ -92,7 +109,7 @@
     <ul id="stage">
       {% for brand in brands %}
 	    <li data-tags="{% for cl_cat in brand.client_categories.all %}{{ cl_cat }},{% endfor %}">
-    	  <a href="/brand/{{ brand.id }}"><span class="portfoliohover">
+    	  <a href="/brand/catalog/{{ brand.id }}"><span class="portfoliohover">
 		  <h1 class="porthover1">{{ brand.name }}</h1>
 		  </span><img src="{{ MEDIA_URL }}{{ brand.logo }}" alt="" /></a>			
 		</li>
@@ -126,7 +143,7 @@
 	<div class="login">
 	    <div id="user_info">
 	    {% if user.is_authenticated %}
-	    hello {{ user.username }} | <a href="javascript:ajax_logout();">logout</a>
+	    {{ user.username }} | <a href="javascript:ajax_logout();">logout</a>
 	    </div>
 	    <div id="login_buts" style="display:none;">
 	    {% else %}
@@ -176,21 +193,34 @@
 
 	<ul class="n">
 
-		<li class="norm"><a href="">О нас</a></li>
-
-		<li class="norm"><a href="">Контакты</a></li>
-
-		<li class="norm"><a href="">Помощь</a></li>
-
-		<li class="norm"><a href="">Магазины</a></li>
-
-		<li class="norm"><a href="">Главная</a></li>
+		<li class="norm"><a href="/about/">О нас</a></li>
+		<li class="norm"><a href="/contacts/">Контакты</a></li>
+		<li class="norm"><a href="/help/">Помощь</a></li>
+		<li class="norm"><a href="#" id="magazines">Магазины</a></li>
+		<li class="norm"><a href="/">Главная</a></li>
 
 	</ul>
 
 </div></div></div>
 
 <div class="line"><img src="{{ STATIC_URL }}img/01.png" alt="" /></div>
+
+{% if about %}
+<div class="photo">
+	<center><img src="{{ STATIC_URL }}img/about.jpg" height="400px;" alt="" usemap="#map" /></center>
+</div>
+{% else %}
+{% if help %}
+<div class="photo">
+	<center><img src="{{ STATIC_URL }}img/help.jpg" height="400px;" alt="" usemap="#map" /></center>
+</div>
+{% else %}
+{% if contacts %}
+<div class="photo">
+	<center><img src="{{ STATIC_URL }}img/contacts.jpg" height="400px;" alt="" usemap="#map" /></center>
+</div>
+
+{% else %}
 
 <div class="photo">
 
@@ -210,9 +240,13 @@
 	</map>
 
 </div>
+{% endif %}
+{% endif %}
+{% endif %}
 
 <div class="line"><img src="{{ STATIC_URL }}img/01.png" alt="" /></div>
 
+<!--
 <div class="footer"><div class="news"><img src="{{ STATIC_URL }}img/23.png" alt=""  /></div><div class="inp"><input type="text" class="colortext1" value="" /></div><div class="sub"><img src="{{ STATIC_URL }}img/25.png" alt=""  /></div><div class="stay"><img src="{{ STATIC_URL }}img/26.png" alt=""  /></div><div class="smm"><img src="{{ STATIC_URL }}img/27.png" alt=""  /><img src="{{ STATIC_URL }}img/28.png" alt=""  /><img src="{{ STATIC_URL }}img/29.png" alt=""  /><img src="{{ STATIC_URL }}img/30.png" alt=""  /></div></div><div class="clear"></div></div>
 
 <div class="footblack"><div class="center"><img src="{{ STATIC_URL }}img/32.png" alt="" align="left"  />
@@ -220,7 +254,7 @@
 <div class="vlinks"><a href="http://www.webdesign.org">Web design</a> by <a title="Free Templates Online" href="http://www.freetemplatesonline.com">Free Templates</a> Online</div>
 
 <div class="v"><a target="_blank" href="">HOME</a> &nbsp;|&nbsp; <a target="_blank" href="">COMPANY</a> &nbsp;|&nbsp; <a target="_blank" href="">IT SUPPORT</a> &nbsp;|&nbsp; <a target="_blank" href="">PRODUCTS</a> &nbsp;|&nbsp; <a target="_blank" href="">CONTACT</a></div></div></div>
-
+-->
 
 
 </div>

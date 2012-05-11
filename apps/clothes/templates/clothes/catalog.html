@@ -17,9 +17,9 @@
 
 <div class="container">
 
-	<img src="{{ STATIC_URL }}images/logo.png" alt="Suit-UP" class="logo">
+	<img src="{{ MEDIA_URL }}{{ brand.logo }}" alt="Suit-UP" class="logo" height="86px;">
 	
-	<h1 class="subtitle">Everything you need to know about clothes &#46;</h1>
+	<h1 class="subtitle">{{ brand.description }}</h1>
 	
 	<nav id="filter">		</nav>
 		<div class="portfolioseperator"></div>
@@ -28,9 +28,9 @@
             {% for item in clothes %}            
 			<li data-tags="{{ item.dress_category }}">
 				<a href="#"><span class="portfoliohover">
-				<h1 class="porthover1">{{ item.brand.name }}, ${{ item.price }}</h1>
+				<h1 class="porthover1">{{ item.brand.name }}, ${{ item.price }}, sale - {{ item.sale_percent }}%</h1>
 				<input type="submit" name="Buy" value="Buy" class="button buy">
-				</span><img src="{{ MEDIA_URL }}{{ item.dress_img }}" alt="" /></a>			</li>
+				</span><img src="{{ MEDIA_URL }}{{ item.dress_img }}" height="140px;" width="210px;" alt="" /></a>			</li>
             {% endfor %}
 		</ul>
 </div>
