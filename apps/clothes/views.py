@@ -17,4 +17,13 @@ def brand_page(request, brand_id):
 def brand_catalog(request, brand_id):
     brand = get_object_or_404(Brand, pk = brand_id)
     clothes = Clothes.objects.filter(brand = brand)
-    return render(request, "clothes/catalog.html", {'clothes': clothes})
+    return render(request, "clothes/catalog.html", {'clothes': clothes, 'brand':brand})
+
+def about(request):
+    return render(request, "home.html", {'about': True})
+
+def help(request):
+    return render(request, "home.html", {'help': True})
+
+def contacts(request):
+    return render(request, "home.html", {'contacts': True})

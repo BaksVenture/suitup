@@ -71,7 +71,7 @@ $(function() {
 
 	$( "#dialog-form" ).dialog({
 		autoOpen: false,
-		height: 300,
+		height: 330,
 		width: 350,
 		modal: true,
 		buttons: {
@@ -109,7 +109,7 @@ $(function() {
 
 	$( "#register-form" ).dialog({
 		autoOpen: false,
-		height: 400,
+		height: 430,
 		width: 350,
 		modal: true,
 		buttons: {
