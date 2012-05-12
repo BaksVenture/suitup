@@ -23,6 +23,15 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+#EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+#EMAIL_FILE_PATH = '/home/kirill/email' # change this to a proper location
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sdubaks@gmail.com'
+EMAIL_HOST_PASSWORD = 'sdubaks12345'
+EMAIL_PORT = 25
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -47,7 +56,7 @@ TIME_ZONE = 'Asia/Almaty'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'ru'
 
-SITE_ID = 1
+SITE_ID = 2
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -59,7 +68,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = rel('..', '..', 'media', 'tartu')
+MEDIA_ROOT = rel('..', '..', 'media', 'suitup')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -70,7 +79,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = rel('..', '..', 'static', 'tartu')
+STATIC_ROOT = rel('..', '..', 'static', 'suitup')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -152,6 +161,7 @@ INSTALLED_APPS = (
     'payment',
     'kkb',
     'manager',
+    'mailer',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

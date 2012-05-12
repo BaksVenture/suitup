@@ -72,3 +72,13 @@ def ajax_register(request):
             return HttpResponse(t.render(variables))
    
     return HttpResponse("FAIL")
+    
+def subscribe(request, brand_id):
+    user = User2.objects.get(user__id = request.user.id)
+    try:
+        user.subscriptions.add(brand_id)
+    except:
+        user.subscriptions.remove(brand_id)
+        return HttpResponse("Follow")
+    
+    return HttpResponse("Unfollow")

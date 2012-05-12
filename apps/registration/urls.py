@@ -6,5 +6,6 @@ urlpatterns = patterns('registration.views',
     url(r'^logout/$', 'logout', name = 'logout'),
     url(r'^ajax_login/$', 'ajax_login', name = "login"),
     url(r'^ajax_register/$', 'ajax_register', name = "register"),
+    url(r'^subscribe/(\d+)/$', 'subscribe'),
 )
 

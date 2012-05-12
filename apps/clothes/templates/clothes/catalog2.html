@@ -5,6 +5,8 @@
 	<meta charset="utf-8">
 	<title>Suit-UP!</title>
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/popup.css">
+	
 	<script src="{{ STATIC_URL }}js/jquery-1.7.1.js"></script>
 	
 	<script src="{{ STATIC_URL }}js/jquery.quicksand.js"></script>
@@ -18,6 +20,22 @@
             jQuery(document.body).imageZoom();
         });
     </script>
+	
+	<style>
+
+		body { font-size: 14px; }
+		label, input { display:block; }
+		input.text { margin-bottom:12px; width:95%; padding: .4em; }
+		fieldset { padding:0; border:0; margin-top:25px; }
+		h1 { font-size: 1.2em; margin: .6em 0; }
+		div#users-contain { width: 350px; margin: 20px 0; }
+		div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+		div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+		.ui-dialog .ui-state-error { padding: .3em; }
+		.validateTips { border: 1px solid transparent; padding: 0.3em; }
+		.ui-button-text, .ui-dialog { font-size:12px; }
+		
+	</style>
 </head>
 
 <body>
@@ -36,8 +54,9 @@
 			<li data-tags="{{ item.client_category }}">
 				<a href="{{ MEDIA_URL }}{{ item.dress_img }}"><span class="portfoliohover">
 				<h1 class="porthover1">{{ item.brand.name }}, ${{ item.price }}, sale - {{ item.sale_percent }}%</h1>
-				<input type="button" onclick="javascript:buy({{ item.id }});" name="Buy" value="Buy" class="button buy">
-				</span><img src="{{ MEDIA_URL }}{{ item.dress_img }}" height="140px;" width="210px;" alt="" /></a>			</li>
+				</span><img src="{{ MEDIA_URL }}{{ item.dress_img }}" height="140px;" width="210px;" alt="" /></a>			
+				<input type="button" onClick="javascript:buy({{ item.id }});" style="margin: -80px 0 0 155px; position:absolute;" value="Buy" />	
+			</li>
             {% endfor %}
 		</ul>
 </div>
@@ -47,5 +66,14 @@
 			<h1>&copy; Copyright 2012 SDU&#46;</h1>
 		</footer>
 </div><!--container end-->
+
+<div id="dark-background"></div> 
+<div class="Popupation" id="popup"> 	
+	<span class="close"></span> 
+	<h2>Payment</h2>
+	<div id="payment_form">
+	</div>  
+</div> 
+
 </body>
 </html>

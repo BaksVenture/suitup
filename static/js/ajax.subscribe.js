@@ -38,40 +38,10 @@ $(document).ajaxSend(function(event, xhr, settings) {
 
 /* CSRF token */
 
-
-$(document).ready(function() {    
-    $("#dark-background").click(hide_test_cert_popup);
-    $("#popup .close").click(hide_test_cert_popup);
-});
-
-function buy(item_id){
-    $.post("/buy/order", {
-        product_id: item_id
-    },
+function ajax_subscribe(brand_id){
+    $.post("/accounts/subscribe/"+brand_id+"/",
     function(data){
-        $("#payment_form").html(data);
-        $width = (window.innerWidth-$("#popup").width())/2;
-        $height = (window.innerHeight-$("#popup").height())/2;
-        $("#popup").css({"top": $height, "left": $width}); 
-        $("#popup").fadeIn(70);
-        $("#dark-background").fadeIn(70);
+        $("#follow_button_"+brand_id).val(data);
     });
 }
 
-function hide_test_cert_popup(){
-    $("#popup").fadeOut(70);
-    $("#dark-background").fadeOut(70);
-}
-
-function complete_payment(){
-    if($("#id_address").val() == "" || $("#id_phone").val() == ""){
-        var temp = $("#popup-msg").text();
-        $("#popup-msg").html("<font color=\"red\">Fill all fields, please!</font>")
-        setTimeout(function() {
-			$("#popup-msg").text(temp);
-		}, 1000 );
-    }
-    else{
-        document.forms["pay_form"].submit();
-    }
-}

@@ -7,7 +7,7 @@ class User(models.Model):
     user = models.OneToOneField(models2.User)
     fname = models.CharField(max_length=100)
     gender = models.CharField(max_length=20)
-    subscriptions = models.ManyToManyField(Brand)
+    subscriptions = models.ManyToManyField(Brand, blank=True)
     
     def __unicode__(self):
         return str(self.user)

@@ -28,6 +28,7 @@
 	<script src="{{ STATIC_URL }}js/ui/jquery.effects.core.js"></script>
 	
 	<script src="{{ STATIC_URL }}js/ajax.login.js"></script>
+	<script src="{{ STATIC_URL }}js/ajax.subscribe.js"></script>
     <script src="{{ STATIC_URL }}dajax/jquery.dajax.core.js" type="text/javascript" charset="utf-8"></script>
     {% dajaxice_js_import %}
 
@@ -83,8 +84,23 @@
 		  });
 	    }
 	  });
+	  
+	  {% for brand in user2.subscriptions.all %}
+	  	$("#follow_button_{{ brand.id }}").val("Unfollow");
+	  {% endfor %}
+	    
     });
+	
+	var user_is_auth = false;
+	{% if user.is_authenticated %}
+	user_is_auth = true;
+	{% endif %}
 
+	function overPortfolio(brand_id){
+		if(user_is_auth)
+			$("#follow_button_"+brand_id).fadeIn("slow");
+	}
+	
 	</script>
 
 	<script src="{{ STATIC_URL }}js/jquery.quicksand.js"></script>
@@ -108,16 +124,16 @@
     
     <ul id="stage">
       {% for brand in brands %}
-	    <li data-tags="{% for cl_cat in brand.client_categories.all %}{{ cl_cat }},{% endfor %}">
+	    <li data-tags="{% for cl_cat in brand.client_categories.all %}{{ cl_cat }}{% if not forloop.last %},{% endif %}{% endfor %}" onMouseOver="javascript:overPortfolio({{ brand.id }});"> 
     	  <a href="/brand/catalog/{{ brand.id }}"><span class="portfoliohover">
-		  <h1 class="porthover1">{{ brand.name }}</h1>
-		  </span><img src="{{ MEDIA_URL }}{{ brand.logo }}" alt="" /></a>			
+		  <h1 class="porthover1">{{ brand.name }}</h1>	
+		  </span><img src="{{ MEDIA_URL }}{{ brand.logo }}" alt="" /></a>
+		  <input type="button" onClick="javascript:ajax_subscribe({{ brand.id }});" class="follow_button" id="follow_button_{{ brand.id }}" style="display: none; margin: -80px 0 0 150px; position: absolute;" value="Follow" />		
 		</li>
       {% endfor %}
     </ul>
   
   </div>
-
 
   <div class="footerseperator"></div>
   <footer>

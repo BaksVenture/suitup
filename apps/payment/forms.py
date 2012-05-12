@@ -8,10 +8,6 @@ class OrderForm(forms.Form):
     phone = forms.CharField(
         label='Контактный телефон',
     )
-    email = forms.EmailField(
-        label='E-mail',
-        required=False,
-    )
     
     def clean(self):
         cleaned_data = self.cleaned_data

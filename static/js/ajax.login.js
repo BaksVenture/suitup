@@ -91,6 +91,7 @@ $(function() {
                       if(data == "{{{FAIL}}}")
                         updateTips("Invalid username or password");
                       else{
+                        user_is_auth = true;
                         $("#login_buts").hide();
                         $("#user_info").html(data);
     					$("#dialog-form").dialog( "close" );
@@ -177,6 +178,8 @@ $(function() {
 function ajax_logout(){
     $.post("/accounts/logout/",
     function(data){
+      user_is_auth = false;
+      $(".follow_button").hide();
       $("#user_info").html('');
       $("#login_buts").show();
     });
