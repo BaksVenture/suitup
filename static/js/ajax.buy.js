@@ -38,6 +38,7 @@ $(document).ajaxSend(function(event, xhr, settings) {
 
 /* CSRF token */
 
+
 $(document).ready(function() {    
     $("#dark-background").click(hide_test_cert_popup);
     $("#popup .close").click(hide_test_cert_popup);
@@ -62,3 +63,15 @@ function hide_test_cert_popup(){
     $("#dark-background").fadeOut(70);
 }
 
+function complete_payment(){
+    if($("#id_address").val() == "" || $("#id_phone").val() == ""){
+        var temp = $("#popup-msg").text();
+        $("#popup-msg").html("<font color=\"red\">Fill all fields, please!</font>")
+        setTimeout(function() {
+			$("#popup-msg").text(temp);
+		}, 1000 );
+    }
+    else{
+        document.forms["pay_form"].submit();
+    }
+}

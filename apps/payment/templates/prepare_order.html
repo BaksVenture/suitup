@@ -1,4 +1,4 @@
-  <form method="post" action="/buy/">{% csrf_token %}
+  <form name="pay_form" method="post" action="/buy/">{% csrf_token %}
 	<div id="popup-msg">
 	    {{ product.brand.name }} - {{ product.price }} KZT<br />
 	</div> 
@@ -10,5 +10,5 @@
     {% endfor %}
     </div> 
 	<input type="hidden" value="{{ product.id }}" name="product_id" />
-    <input type="submit" value="Подтвердить" />
+    <input type="button" onclick="complete_payment()" value="Подтвердить" />
   </form>
