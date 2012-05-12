@@ -10,6 +10,14 @@
 	<script src="{{ STATIC_URL }}js/jquery.quicksand.js"></script>
 	<script src="{{ STATIC_URL }}js/script.js"></script>
 	<script src="{{ STATIC_URL }}js/ajax.buy.js"></script>
+
+	<script src="{{ STATIC_URL }}js/jquery.imageZoom.js"></script>
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.imageZoom.css">
+    <script type="text/javascript">
+        $(window).load(function() {
+            jQuery(document.body).imageZoom();
+        });
+    </script>
 </head>
 
 <body>
@@ -26,7 +34,7 @@
 		<ul id="stage">
             {% for item in clothes %}            
 			<li data-tags="{{ item.client_category }}">
-				<a href="#"><span class="portfoliohover">
+				<a href="{{ MEDIA_URL }}{{ item.dress_img }}"><span class="portfoliohover">
 				<h1 class="porthover1">{{ item.brand.name }}, ${{ item.price }}, sale - {{ item.sale_percent }}%</h1>
 				<input type="button" onclick="javascript:buy({{ item.id }});" name="Buy" value="Buy" class="button buy">
 				</span><img src="{{ MEDIA_URL }}{{ item.dress_img }}" height="140px;" width="210px;" alt="" /></a>			</li>
@@ -36,9 +44,7 @@
 
 		<div class="footerseperator"></div>
 		<footer>
-			<h1>&copy; Copyright 2011 Atlas&#46;</h1>
-			<h2>Atlas HTML Theme by <a href="http://purtypixels.com" title="PurtyPixels">Purty Pixels</a></h2>
-			<h3>Send me a <a href="#" title="Twitter">tweet</a> or become a fan on <a href="#" title="Facebook">facebook</a></h3>
+			<h1>&copy; Copyright 2012 SDU&#46;</h1>
 		</footer>
 </div><!--container end-->
 </body>

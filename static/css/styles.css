@@ -394,6 +394,31 @@ li.dmenu3 {
 .portfoliocontainer ul.hidden{
 	display:none;
 }
+
+.portfoliohover2 {
+	width: 210px;
+	height: 54px;
+	background-image: url(../images/portfolio/workhover.png);
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	position: absolute;
+	opacity: 0;
+	top: 87px;
+	left: 0px;
+	-webkit-transition: opacity .5s ease-in-out;
+  	-moz-transition: opacity .5s ease-in-out;
+  	-o-transition: opacity .5s ease-in-out;
+ 	 transition: opacity .5s ease-in-out;
+}
+
+#stage li a:hover .portfoliohover2 {
+	opacity: 1;
+	-webkit-transition: opacity .5s ease-in-out;
+  	-moz-transition: opacity .5s ease-in-out;
+  	-o-transition: opacity .5s ease-in-out;
+ 	 transition: opacity .5s ease-in-out;
+}
+
 .portfoliohover {
 	width: 210px;
 	height: 54px;
