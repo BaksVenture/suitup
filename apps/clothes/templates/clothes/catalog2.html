@@ -54,8 +54,8 @@
 			<li data-tags="{{ item.client_category }}">
 				<a href="{{ MEDIA_URL }}{{ item.dress_img }}"><span class="portfoliohover">
 				<h1 class="porthover1">{{ item.brand.name }}, ${{ item.price }}, sale - {{ item.sale_percent }}%</h1>
-				</span><img src="{{ MEDIA_URL }}{{ item.dress_img }}" height="140px;" width="210px;" alt="" /></a>			
 				<input type="button" onClick="javascript:buy({{ item.id }});" style="margin: -80px 0 0 155px; position:absolute;" value="Buy" />	
+				</span><img src="{{ MEDIA_URL }}{{ item.dress_img }}" height="140px;" width="210px;" alt="" /></a>			
 			</li>
             {% endfor %}
 		</ul>
